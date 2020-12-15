@@ -28,9 +28,13 @@ public class Game extends Canvas implements Runnable
 	
 	public Game()
 	{
-		new Window(WIDTH, HEIGHT, "Game to end all games", this);
 		
 		handle = new Handler();
+		
+		
+		new Window(WIDTH, HEIGHT, "Game to end all games", this);
+		
+		
 		
 		handle.addObject(new Player(100,100, ID.Player));
 		
@@ -64,7 +68,7 @@ public class Game extends Canvas implements Runnable
 		//
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
-		double ns = 1000000000;
+		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		long timer = System.currentTimeMillis();
 		int frames = 0;
