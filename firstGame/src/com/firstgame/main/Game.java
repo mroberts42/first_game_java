@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 // Design a Game
 //https://www.youtube.com/watch?v=1gir2R7G9ws
 //https://www.youtube.com/watch?v=0T1U0kbu1Sk
+//https://www.youtube.com/watch?v=bWHYjLJZswQ
 
 public class Game extends Canvas implements Runnable
 {
@@ -31,12 +32,20 @@ public class Game extends Canvas implements Runnable
 		
 		handle = new Handler();
 		
+		//Where does this Method Come From?
+		//It's not a method in key Adapter.
+		//Is it just a Java default?
+		//takes our key input class as a parameter, or a KeyAdapter instance
+		this.addKeyListener(new KeyInput(handle));
+		
+		System.out.println("test"); 	
+		
 		
 		new Window(WIDTH, HEIGHT, "Game to end all games", this);
 		
 		
 		
-		handle.addObject(new Player(100,100, ID.Player));
+		handle.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player));
 		
 		
 	}
@@ -89,7 +98,7 @@ public class Game extends Canvas implements Runnable
 			if(System.currentTimeMillis() - timer > 1000)
 			{
 				timer += 1000;
-				System.out.println("FPS: " + frames);
+				//System.out.println("FPS: " + frames);
 				frames = 0;
 			}
 		}
@@ -104,7 +113,6 @@ public class Game extends Canvas implements Runnable
 	private void render()
 	
 	{
-		//What the fuck is any of this.
 		BufferStrategy bs = this.getBufferStrategy();
 		if(bs == null)
 		{
@@ -113,7 +121,7 @@ public class Game extends Canvas implements Runnable
 		}
 		Graphics g = bs.getDrawGraphics();
 		
-		g.setColor(Color.red);
+		g.setColor(Color.black);
 		g.fillRect(0, 0,WIDTH,HEIGHT);
 		
 		handle.render(g);
